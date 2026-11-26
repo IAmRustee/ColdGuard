@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { View, Text, ScrollView, StyleSheet, useWindowDimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
-// PALITAN ito ng IPv4 address ng laptop na nagre-run ng server.py
-// (same address the ESP32 posts to, port 5000)
-const API = "http://192.168.1.17:5000";
+
+// IPv4 address of host server (same address the ESP32 posts to, port 5000)
+const API = "http://10.75.43.111:5000";
 
 const POLL_MS = 10000; // ask the server for new readings every 10 sec
 const STALE_S = 90; // ESP32 sends every ~30 s; 3 missed readings = sensor offline
@@ -22,7 +22,6 @@ const C = {
   cold: "#1D4ED8",
 };
 
-// Status: banner color + icon + text (not color alone)
 const STATUS = {
   normal: {
     color: C.safe,
@@ -42,7 +41,6 @@ const STATUS = {
     title: "Excursion alert",
     msg: "Temperature is outside 2–8°C. Check the fridge now.",
   },
-  // No data yet, or the sensor stopped sending: never show a green "Normal" for that
   nodata: {
     color: C.muted,
     icon: "?",
